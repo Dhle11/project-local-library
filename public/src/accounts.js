@@ -39,15 +39,13 @@ function getTotalNumberOfBorrows(account, books) {
 }
 
 //helper function for authors
-function getAuthorByID(authors, booksCheckedOutArr){
+function getAuthorByID(authors, booksCheckedOutArr) {
   const helperFunction = booksCheckedOutArr.forEach((book) => {
-    const authorMatch = authors.find((author) => 
-     book.authorId === author.id);
+    const authorMatch = authors.find((author) => book.authorId === author.id);
     book.author = authorMatch;
-  })
+  });
   return helperFunction;
 }
-
 
 //create a function getBooksPossessedByAccount that takes account, books, authors
 function getBooksPossessedByAccount(account, books, authors) {

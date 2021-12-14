@@ -15,22 +15,20 @@ function findBookById(books, id) {
 }
 
 //create function partitionBooksByBorrowedStatus takes a single parameter, an array of books.
-  //return array with two arrays inside of it. The spread operator be used at the end to combine arrays by using the spread operator.
-
 function partitionBooksByBorrowedStatus(books) {
+  //return array with two arrays inside of it. The spread operator be used at the end to combine arrays by using the spread operator.
   //use a helper function with the .every() method that will check if our condition is true within the borrow array.
   //first array should contain books that have been returned === true.
   //use .filter() to check the books array and compile a new array that meets our condition.
-
   let booksReturned = books.filter((book) =>
     book.borrows.every((borrow) => borrow.returned === true)
   );
+
   //second array should contain books returned === false.
   //use a helper function with the .some() method that will check if our condition is true within the borrow array.  If it is true
   let booksBorrowed = books.filter((book) =>
     book.borrows.some((borrow) => borrow.returned === false)
   );
-
   let finalArray = [[...booksBorrowed], [...booksReturned]];
   return finalArray;
 }

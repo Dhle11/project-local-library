@@ -24,39 +24,10 @@ function getBooksBorrowedCount(books) {
   return bookCheckout.length;
 }
 
-/*
-//create a funtion getMostCommonGenres that take array of books
 function getMostCommonGenres(books) {
-  let map = {};
-
-//create a loop over the books array using .forEach and count the number of times each genre
-books.forEach((num) => {
-  //if there is a genre in the map then add 1
-    if (map[num.genre]) {
-      map[num.genre]++;
-    } else {
-      //if there isn't a genre in the map then set the key and value to one
-      map[num.genre] = 1;
-    }
-  });
-  //map the Object entries and return them with name and count
-  return Object.entries(map)
-    .map(([name, count]) => {
-      return {
-        name,
-        count,
-      };
-    })
-    //using .sort() to sort the array so the most common comes first
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 5);
-}
-*/
-
-function getMostCommonGenres(books) {
+  //using const bookGenres as a helper function to map over book genres
   const bookGenres = books.map((book) => book.genre);
   const temp = [];
-  //map over book genres
   bookGenres.map((genre) => {
     //for each genre, first check to see if genre already exists in array
     const genreLocation = temp.findIndex((element) => element.name === genre);

@@ -26,32 +26,31 @@ function getBooksBorrowedCount(books) {
   return bookCheckout.length;
 }
 
-//create a funtion getMostCommonGenres that take array of books
+//create a funtion getMostCommonGenres that take array of books.
 function getMostCommonGenres(books) {
-  let map = {};
-
-//create a loop over the books array using .forEach and count the number of times each genre
-books.forEach((num) => {
-  //if there is a genre in the map then add 1
-    if (map[num.genre]) {
-      map[num.genre]++;
+  //assign const bookGenres and use helper function .map to map over the book genres
+  const bookGenres = books.map((book) => book.genre);
+  const temp = [];
+  //map over book genres
+  bookGenres.map((genre) => {
+    //assign const genreLocation and use helper function to check to see if genre already exists in array
+    const genreLocation = temp.findIndex((element) => element.name === genre);
+    //second, if it exists, increase count by 1
+    if (genreLocation >= 0) {
+      temp[genreLocation].count = temp[genreLocation].count + 1;
+      //else, if it don't exist, push a new genre object onto array with count of 1
     } else {
-      //if there isn't a genre in the map then set the key and value to one
-      map[num.genre] = 1;
+      temp.push({ name: genre, count: 1 });
     }
   });
-  //map the Object entries and return them with name and count
-  return Object.entries(map)
-    .map(([name, count]) => {
-      return {
-        name,
-        count,
-      };
-    })
-    //using .sort() to sort the array so the most common comes first
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 5);
+  
+  temp.sort((a, b) => b.count - a.count);
+  if (temp.length > 5) {
+    return temp.slice(0, 5);
+  }
+  return temp;
 }
+
 
 //create a funtion getMostPopularBooks that take array of books
 function getMostPopularBooks(books) {
